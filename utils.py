@@ -23,11 +23,6 @@ def show_gray_image_grid(imgs, x=2, y=5, size=(20,20), path=None, save=False):
         plt.show() 
         
         
-def my_softmax(input, axis=1):
-    trans_input = input.transpose(axis, 0).contiguous()
-    soft_max_1d = F.softmax(trans_input)
-    return soft_max_1d.transpose(axis, 0)
-
 #
 #def binary_concrete(logits, tau=1, hard=False, eps=1e-10):
 #    y_soft = binary_concrete_sample(logits, tau=tau, eps=eps)
@@ -58,6 +53,11 @@ from torch.utils.data.dataset import TensorDataset
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from torch.autograd import Variable
+
+def my_softmax(input, axis=1):
+    trans_input = input.transpose(axis, 0).contiguous()
+    soft_max_1d = F.softmax(trans_input)
+    return soft_max_1d.transpose(axis, 0)
 
 def sample_gumbel(shape, eps=1e-10):
     """
